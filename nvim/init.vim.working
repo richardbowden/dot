@@ -1,0 +1,261 @@
+"PLUGING
+call plug#begin('~/.local/share/nvim/plugged')
+
+"Visual
+Plug 'joshdick/onedark.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+
+"Quality of life
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-commentary'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'terryma/vim-multiple-cursors'
+
+"Code
+Plug 'fatih/vim-go'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.local/share/nvim/plugged/gocode/nvim/symlink.sh' }
+
+"Autocomplete
+Plug 'Shougo/deoplete.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+"Data formats
+Plug 'elzr/vim-json'
+
+"System
+Plug 'tweekmonster/startuptime.vim'
+
+Plug 'wellle/targets.vim'
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'hauleth/blame.vim'
+Plug 'skielbasa/vim-material-monokai'
+
+call plug#end()
+
+"Global
+let mapleader="\<Space>"
+set splitbelow
+set splitright
+set clipboard+=unnamedplus
+set number
+
+" key remaps
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+
+" buffer stuff
+" noremap <leader>bn :enew<CR>
+" noremap <leader>l :bnext<CR>
+" noremap <leader>h :bprev<CR>
+noremap <C-.> :bn<CR>
+noremap <C-,> :bp<CR>
+noremap <leader>bq :bp <BAR> bd #<CR>
+noremap <leader>bl :ls<CR>
+" noremap <leader><tab> :bd <CR>
+" noremap <tab> :bnext<CR>
+" noremap <S-tab> :bprev<CR>
+
+nnoremap <CR> :noh<CR>
+
+let g:python_host_prog = '/Users/richard/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/richard/.pyenv/versions/neovim3/bin/python'
+
+
+" source $HOME/.config/nvim/generic.vim
+" source $HOME/.config/nvim/gui.vim
+" source $HOME/.config/nvim/tagbar.vim
+" source $HOME/.config/nvim/nerdtree.vim
+" source $HOME/.config/nvim/deo.vim
+
+"not ported source $HOME/.config/nvim/ctrlp.vim
+" source $HOME/.config/nvim/go.vim
+" source $HOME/.config/nvim/ultrasnip.vim
+" source $HOME/.config/nvim/python.vim
+source $HOME/.config/nvim/web.vim
+
+
+set number
+set laststatus=2
+
+set termguicolors
+"set background=dark
+"colorscheme onedark
+colorscheme blame
+
+
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
+
+let g:airline_theme='onedark'
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+
+
+" Auto open the TagBar when file is supported
+" autocmd FileType * nested :call tagbar#autoopen(1)
+" nnoremap <leader>f :ta<space>
+
+let g:tagbar_compact = 1
+
+" let g:tagbar_type_go = {
+"     \ 'ctagstype': 'go',
+"     \ 'kinds' : [
+"         \'p:package',
+"         \'f:function',
+"         \'v:variables',
+"         \'t:type',
+"         \'c:const'
+"     \]
+" \}
+
+let g:tagbar_type_ansible = {
+    \ 'ctagstype' : 'ansible',
+    \ 'kinds' : [
+    \ 't:tasks',
+    \ 'h:hosts'
+    \ ],
+    \ 'sort' : 0
+    \ }
+
+let g:tagbar_type_terraform = {
+    \ 'ctagstype' : 'terraform',
+    \ 'kinds' : [
+    \ 'r:resources',
+    \ 'm:modules',
+    \ 'o:outputs',
+    \ 'v:variables',
+    \ 'f:tfvars'
+    \ ],
+    \ 'sort' : 0
+    \ }
+
+let g:tagbar_type_make = {
+    \ 'kinds':[
+    \ 'm:macros',
+    \ 't:targets'
+    \ ]
+    \}
+
+let g:tagbar_type_sh = {
+    \ 'kinds':[
+    \ 'f:functions',
+    \ 'c:constants'
+    \ ]
+    \}
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+    \ 'h:Heading_L1',
+    \ 'i:Heading_L2',
+    \ 'k:Heading_L3'
+    \ ]
+    \ }
+
+"nmap <F8> :TagbarToggle<CR>
+noremap <Leader>t :TagbarToggle<CR>
+
+
+
+" sets chars for git NERDTree plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+
+" maps nerdtree to the stupid key under esc
+map § :NERDTreeToggle<CR>
+
+" NERDTress File highlighting
+" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" endfunction
+
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' 
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+let g:deoplete#sources#go#auto_goos = 1
+" neocomplete like
+set completeopt+=noinsert
+" deoplete.nvim recommend
+set completeopt+=noselect
+
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+
+nmap <Leader>p :GoDecls<CR>
+nmap <Leader>pp :GoDeclsDir<CR>
+
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>e :cnext<CR>
+au FileType go nmap <leader>ee :cprevious<CR>
+au FileType go nnoremap <leader>ec :cclose<CR>
+
+au FileType go set tabstop=3
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+au BufNewFile,BufRead *.py set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set textwidth=79 | set expandtab | set autoindent | set fileformat=unix
+
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
+let python_highlight_all=1
+
+
+au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2|set softtabstop=2|set shiftwidth=2

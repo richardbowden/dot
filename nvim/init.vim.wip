@@ -1,0 +1,38 @@
+
+call plug#begin('~/.vim/plugged')
+
+    "search
+	Plug 'junegunn/fzf.vim'
+    
+    "GUI
+    Plug 'hauleth/blame.vim'
+	Plug 'vim-airline/vim-airline'
+    
+    "code 
+	Plug 'sakhnik/nvim-gdb'
+
+call plug#end()
+
+"Global
+let mapleader="\<Space>"
+set splitbelow
+set splitright
+set clipboard+=unnamedplus
+set number
+
+set hlsearch                " highlight search results
+set tabstop=4               " number of columns occupied by a tab character
+set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set expandtab               " converts tabs to white space
+set shiftwidth=4            " width for autoindents
+set laststatus=2
+
+set background = "dark"
+colorscheme blame
+set termguicolors
+
+" key remaps
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
